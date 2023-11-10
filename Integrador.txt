@@ -1,0 +1,50 @@
+Requerimiento funcionales 
+El sistema debe hacer el procesamiento de datos mandado por la cámara 
+El sistema debe hacer el registro del vehículo en el sistema si no está registrado 
+El sistema debe hacer distintas acciones según la velocidad del vehículo 
+El sistema debe tener la capacidad de mandar los datos a una API 
+El sistema debe tener la capacidad de enviar los datos al correo electrónico El sistema debe tener la capacidad de imprimir los datos 3 veces 
+
+Requerimientos no funcionales 
+El sistema debe tener funcionamiento 247 
+
+Requerimientos de dominio 
+Cada cámara tiene un id, una descripción, coordenadas x e y de su ubicación, dirección IP y modelo de la cámara 
+
+Reglas de negocio 
+Hechos 
+Cada paso vehícular debe ser registrado. 
+Se deben imprimir 3 copias con los datos si supera los 100 kmh. 
+Si la velocidad supera los 100 kmh se envía un correo electrónico a “alertas@ciudad” y son enviados los datos a una impresora para imprimirlos 3 veces. 
+
+Restricciones 
+El sistema debe funcionar 247 
+
+Acción disparadora 
+Se reciben los datos de cada vehículo que pasa por la cámara 
+
+Diccionario de Datos 
+Datos de la Detección: Fecha + Hora + ID de la cámara + Patente + Velocidad 
+Datos de la Cámara: ID de la cámara + Descripción + Coordenadas + Dirección IP + Modelo de la cámara 
+
+Casos de uso 
+Caso de uso Registro vehícular. 
+ActoresCámara de videocontrol, (primario). 
+
+Camino básico
+1. El sistema registra los datos (Detección) del paso de un vehículo enviados por la cámara. 
+2. El sistema evalúa que la velocidad sea menor a 70 kmh. 
+
+Caminos alternativos 
+2.a La velocidad es mayor a 70 kmh y menor a 100 kmh. 
+2.a.1 El sistema envía los datos recibidos por la cámara a una API que se encargará de guardarlos en base de datos. 
+2.a.2 El sistema envía un correo con los datos a avisos@ciudad. 
+2.b La velocidad es mayor a 100 kmh.
+2.b.1 El sistema envía los datos recibidos por la cámara a una API que se encargará de guardarlos en base de datos. 
+2.b.2 El sistema envía un correo con los datos que envió la cámara a la cuenta alertas@ciudad. 
+2.b.3 El sistema envía 3 veces los datos a una impresora para que sean impresos. 
+
+Escenario de éxito 
+El sistema registra correctamente los datos.
+Escenario de Fracaso 
+El sistema no puede hacer el proceso correctamente por un error en el sistema.
